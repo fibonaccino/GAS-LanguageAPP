@@ -1,0 +1,20 @@
+function translateText() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  
+  var sourceLanguage = sheet.getRange("A2").getValue();
+  var targetLanguagesRange = sheet.getRange("B2:F2");
+  var targetLanguages = targetLanguagesRange.getValues()[0];
+  
+  var range = sheet.getRange("A3:A");
+  var values = range.getValues();
+  
+  for (var i = 0; i < values.length; i++) {
+    var textToTranslate = values[i][0];
+    if (textToTranslate) { 
+      for (var j = 0; j < targetLanguages.length; j++) {
+        var translatedText = LanguageApp.translate(textToTranslate, sourceLanguage, targetLanguages[j]);
+        sheet.getRange(i + 3, j + 2).setValue(translatedText); 
+      }
+    }
+  }
+}
