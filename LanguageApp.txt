@@ -10,7 +10,6 @@ function translateText() {
   var range = sheet.getRange("A4:A");
   var values = range.getValues();
   // Logger.log(lastRow);
-  // Logger.log(lastColumn);
   
   for (var i = 0; i < lastRow -1; i++) {
     var textToTranslate = values[i][0];
